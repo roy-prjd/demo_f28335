@@ -1,0 +1,77 @@
+/*
+ * main.c
+ *
+ *  Created on: 2022-6-12
+ *      Author: tly
+ */
+#include "DSP2833x_Device.h"
+#include "DSP2833x_Examples.h"
+
+
+#include "user_led.h"
+#include "user_key.h"
+
+/*******************************************************************************
+* 函 数 名         : delay
+* 函数功能		   : 延时函数，通过循环占用CPU，达到延时功能
+* 输    入         : 无
+* 输    出         : 无
+*******************************************************************************/
+void delay(void)
+{
+    Uint16 		i;
+	Uint32      j;
+	for(i=0;i<32;i++)
+		for (j = 0; j < 100000; j++);
+}
+
+
+/*******************************************************************************
+* 函 数 名         : main
+* 函数功能		   : 主函数
+* 输    入         : 无
+* 输    出         : 无
+*******************************************************************************/
+void main()
+{//裸机程序驱动
+
+	char key=0;
+	InitSysCtrl();	//完成系统时钟配置以及使能各外设时钟（含GPIO时钟）
+
+	LED_Init();	//初始化
+	KEY_Init();	//初始化
+
+	while(1)
+	{//顺序执行以下操作
+
+	//1. 直接驱动LED1
+		LED1_TOGGLE;	//反转
+		//delay(1000);	//不准确延时
+		DELAY_US(100);	//使用该延时函数，在此处CPU-150M
+
+
+	//2. 按键条件驱动LED2
+		key=KEY_Scan(0);
+
+	#if KEY_GROUP
+		switch(key)
+		{
+			case KEY1_PRESS: LED2_TOGGLE;break;
+			case KEY2_PRESS: LED3_TOGGLE;break;
+			case KEY3_PRESS: LED4_TOGGLE;break;
+			case KEY4_PRESS: LED5_TOGGLE;break;
+			case KEY5_PRESS: LED6_TOGGLE;break;
+			case KEY6_PRESS: LED7_TOGGLE;break;
+		}
+	#endif
+
+		if(key)
+		{
+			LED2_TOGGLE;	//反转
+		}
+		DELAY_US(100);
+	}
+
+}
+
+

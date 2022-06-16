@@ -1,0 +1,14 @@
+/*
+ * main.c
+ *
+ *  Created on: 2022-6-12
+ *      Author: tly
+ */
+#include "DSP2833x_Device.h"
+#include "DSP2833x_Examples.h"
+
+void main()
+{
+
+}
+

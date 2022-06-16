@@ -1,0 +1,13 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Each subdirectory must supply rules for building sources it contributes
+App/led/user_led.obj: ../App/led/user_led.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"C:/ti/ccsv5/tools/compiler/c2000_6.2.0/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/ti/ccsv5/tools/compiler/c2000_6.2.0/include" --include_path="E:/Files.packs/tly.Demo/DSP_Demo/Demo_f28335/DSP2833x_Libraries/DSP2833x_common/include" --include_path="E:/Files.packs/tly.Demo/DSP_Demo/Demo_f28335/DSP2833x_Libraries/DSP2833x_headers/include" --include_path="E:/Files.packs/tly.Demo/DSP_Demo/Demo_f28335/demo1/App/led" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="App/led/user_led.pp" --obj_directory="App/led" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+
